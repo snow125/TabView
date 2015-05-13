@@ -10,12 +10,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="@string/hello_world" />
+        android:text="@string/hello_world"/>
     
     <com.yhd.tabview.TabView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tab:tab_count="4">
+        tab:tab_count="4"
+        tab:tab_pic_normal="@array/pic_normal"
+        tab:tab_pic_selected="@array/pic_selected">
     </com.yhd.tabview.TabView>
 
 </LinearLayout>
