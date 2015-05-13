@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tab="http://schemas.android.com/apk/res/com.yhd.tabview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yhd.tabview.MainActivity" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="@string/hello_world" />
+    
+    <com.yhd.tabview.TabView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tab:tab_count="4">
+    </com.yhd.tabview.TabView>
+
+</LinearLayout>

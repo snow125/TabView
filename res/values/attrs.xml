@@ -1,0 +1,7 @@
+<resources>
+    <declare-styleable name="tab_view">
+        <attr name="tab_count" format="integer"/>
+        <attr name="tab_pic_normal" format="reference"/>
+        <attr name="tab_pic_selected" format="reference"/>
+    </declare-styleable>
+</resources>
