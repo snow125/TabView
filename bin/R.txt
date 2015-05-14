@@ -1,0 +1,12 @@
+int attr item_height 0x7f010003
+int attr item_width 0x7f010002
+int attr tab_count 0x7f010000
+int attr tab_height 0x7f010001
+int attr tab_pic_selector 0x7f010004
+int layout tabview 0x7f020000
+int[] styleable TabView { 0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003, 0x7f010004 }
+int styleable TabView_item_height 3
+int styleable TabView_item_width 2
+int styleable TabView_tab_count 0
+int styleable TabView_tab_height 1
+int styleable TabView_tab_pic_selector 4

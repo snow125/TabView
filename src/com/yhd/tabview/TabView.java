@@ -17,7 +17,7 @@ import android.widget.RelativeLayout;
 public class TabView extends LinearLayout{
 
 	private Context context;
-	private int tabCount;
+	private int tabCount = 1;
 	private RelativeLayout[] midViews;
 	private ImageView[] childViews;
 	private String[] picSelector;
@@ -25,6 +25,7 @@ public class TabView extends LinearLayout{
 	private OnClickListener[] onClicks;
 	private int viewHeight;
 	private int childWidth, childHeight;
+	private String mainProjectPackageName;
 	
 	public TabView(Context context) {
 		this(context, null, 0);
@@ -37,26 +38,20 @@ public class TabView extends LinearLayout{
 	public TabView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		this.context = context;
-		TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.tab_view, defStyle, 0);
+		TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.TabView, defStyle, 0);
 		int count = a.getIndexCount();
 		for (int i = 0; i < count; i++) {
 			int attr = a.getIndex(i);
-			switch (attr) {
-			case R.styleable.tab_view_tab_count:
-				tabCount = a.getInteger(attr, 0);
-				break;
-			case R.styleable.tab_view_tab_pic_selector:
-				picSelector = getResources().getStringArray(a.getResourceId(attr, 0));	
-				break;
-			case R.styleable.tab_view_tab_height:
+			if(attr == R.styleable.TabView_tab_count){
+				tabCount = a.getInteger(attr, 1);
+			}else if(attr == R.styleable.TabView_tab_pic_selector){
+				picSelector = getResources().getStringArray(a.getResourceId(attr, 0));
+			}else if(attr == R.styleable.TabView_tab_height){
 				viewHeight = (int) a.getDimension(attr, 0);
-				break;
-			case R.styleable.tab_view_item_width:
+			}else if(attr == R.styleable.TabView_item_width){
 				childWidth = (int) a.getDimension(attr, 0);
-				break;
-			case R.styleable.tab_view_item_height:
+			}else if(attr == R.styleable.TabView_item_height){
 				childHeight = (int) a.getDimension(attr, 0);
-				break;
 			}
 		}
 		setParentView();
@@ -86,12 +81,14 @@ public class TabView extends LinearLayout{
 	
 	@SuppressLint("NewApi")
 	private void addChildView() {
-		for (int i = 0; i < tabCount; i++) {
-			childViews[i] = new ImageView(context);
-			childViews[i].setBackgroundResource(getResId(picSelector[i]));
-			childViews[i].setEnabled(true);
-			childViews[i].setLayoutParams(new LayoutParams(childWidth, childHeight));
-			midViews[i].addView(childViews[i]);
+		if(mainProjectPackageName != null){
+			for (int i = 0; i < tabCount; i++) {
+				childViews[i] = new ImageView(context);
+				childViews[i].setBackgroundResource(getResId(picSelector[i]));
+				childViews[i].setEnabled(true);
+				childViews[i].setLayoutParams(new LayoutParams(childWidth, childHeight));
+				midViews[i].addView(childViews[i]);
+			}
 		}
 	}
 	
@@ -100,7 +97,7 @@ public class TabView extends LinearLayout{
 		Field f = null;
 		Object obj = null;
 		try {
-			cls = Class.forName("com.yhd.tabview.R$drawable");
+			cls = Class.forName(mainProjectPackageName+"R$drawable");
 			f = cls.getField(res);
 			obj = f.get(cls);
 		} catch (ClassNotFoundException e) {
@@ -128,6 +125,15 @@ public class TabView extends LinearLayout{
 			//设置监听函数 否则无点击效果
 			childViews[i].setOnClickListener(onClicks[i]);
 		}
+	}
+
+	public String getMainProjectPackageName() {
+		return mainProjectPackageName;
+	}
+
+	public void setMainProjectPackageName(String mainProjectPackageName) {
+		this.mainProjectPackageName = mainProjectPackageName;
+		addChildView();
 	}
 
 }

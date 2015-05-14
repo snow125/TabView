@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <declare-styleable name="tab_view">
+    <declare-styleable name="TabView">
         <attr name="tab_count" format="integer"/>
         <attr name="tab_height" format="dimension"/>
         <attr name="item_width" format="dimension"/>
