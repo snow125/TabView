@@ -1,5 +1,7 @@
 package com.yhd.tabview;
 
+import java.lang.reflect.Field;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -73,14 +75,29 @@ public class TabView extends LinearLayout{
 	private void addChildView() {
 		for (int i = 0; i < tabCount; i++) {
 			childViews[i] = new ImageView(context);
-			Log.e("123", ""+picNormal[i]);
 			childViews[i].setBackgroundResource(getResId(picNormal[i]));
 			midViews[i].addView(childViews[i]);
 		}
 	}
 	
 	private int getResId(String res){
-		return 0x7f020003;
+		Class<?> cls = null;
+		Field f = null;
+		Object obj = null;
+		try {
+			cls = Class.forName("com.yhd.tabview.R$drawable");
+			f = cls.getField(res);
+			obj = f.get(cls);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		return (Integer) obj;
 	}
 
 }
