@@ -7,17 +7,21 @@
     tools:context="com.yhd.tabview.MainActivity" >
 
     <TextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:text="@string/hello_world"/>
     
     <com.yhd.tabview.TabView 
+        android:id="@+id/tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tab:tab_count="4"
-        tab:tab_pic_normal="@array/pic_normal"
-        tab:tab_pic_selected="@array/pic_selected">
+        tab:tab_count="3"
+        tab:tab_height="56dp"
+        tab:item_width="40dp"
+        tab:item_height="40dp"
+        tab:tab_pic_selector="@array/pic_selector">
     </com.yhd.tabview.TabView>
 
 </LinearLayout>

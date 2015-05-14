@@ -8,6 +8,8 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -18,9 +20,11 @@ public class TabView extends LinearLayout{
 	private int tabCount;
 	private RelativeLayout[] midViews;
 	private ImageView[] childViews;
-	private String[] picNormal;
-	private String[] picSelected;
-	private int itemWidth;
+	private String[] picSelector;
+	private int midWidth;
+	private OnClickListener[] onClicks;
+	private int viewHeight;
+	private int childWidth, childHeight;
 	
 	public TabView(Context context) {
 		this(context, null, 0);
@@ -41,11 +45,17 @@ public class TabView extends LinearLayout{
 			case R.styleable.tab_view_tab_count:
 				tabCount = a.getInteger(attr, 0);
 				break;
-			case R.styleable.tab_view_tab_pic_normal:
-				picNormal = getResources().getStringArray(a.getResourceId(attr, 0));	
+			case R.styleable.tab_view_tab_pic_selector:
+				picSelector = getResources().getStringArray(a.getResourceId(attr, 0));	
 				break;
-			case R.styleable.tab_view_tab_pic_selected:
-				picSelected = getResources().getStringArray(a.getResourceId(attr, 0));
+			case R.styleable.tab_view_tab_height:
+				viewHeight = (int) a.getDimension(attr, 0);
+				break;
+			case R.styleable.tab_view_item_width:
+				childWidth = (int) a.getDimension(attr, 0);
+				break;
+			case R.styleable.tab_view_item_height:
+				childHeight = (int) a.getDimension(attr, 0);
 				break;
 			}
 		}
@@ -57,16 +67,19 @@ public class TabView extends LinearLayout{
 	
 	private void setParentView() {
 		this.setOrientation(HORIZONTAL);
+		this.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		midViews = new RelativeLayout[tabCount];
 		childViews = new ImageView[tabCount];
-		itemWidth = ScreenTool.getScreenWidth(context)/tabCount;
+		onClicks = new OnClickListener[tabCount];
+		midWidth = ScreenTool.getScreenWidth(context)/tabCount;
 	}
 	
 	private void addMidView() {
 		for (int i = 0; i < tabCount; i++) {
 			midViews[i] = new RelativeLayout(context);
-			RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(itemWidth, android.widget.RelativeLayout.LayoutParams.MATCH_PARENT);
+			RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(midWidth, viewHeight);
 			midViews[i].setLayoutParams(lp);
+			midViews[i].setGravity(Gravity.CENTER);
 			addView(midViews[i]);
 		}
 	}
@@ -75,7 +88,9 @@ public class TabView extends LinearLayout{
 	private void addChildView() {
 		for (int i = 0; i < tabCount; i++) {
 			childViews[i] = new ImageView(context);
-			childViews[i].setBackgroundResource(getResId(picNormal[i]));
+			childViews[i].setBackgroundResource(getResId(picSelector[i]));
+			childViews[i].setEnabled(true);
+			childViews[i].setLayoutParams(new LayoutParams(childWidth, childHeight));
 			midViews[i].addView(childViews[i]);
 		}
 	}
@@ -98,6 +113,21 @@ public class TabView extends LinearLayout{
 			e.printStackTrace();
 		}
 		return (Integer) obj;
+	}
+
+	public OnClickListener[] getOnClicks() {
+		return onClicks;
+	}
+
+	public void setOnClicks(OnClickListener[] onClicks) {
+		if(this.onClicks == onClicks){
+			return;
+		}
+		this.onClicks = onClicks;
+		for (int i = 0; i < tabCount; i++) {
+			//设置监听函数 否则无点击效果
+			childViews[i].setOnClickListener(onClicks[i]);
+		}
 	}
 
 }

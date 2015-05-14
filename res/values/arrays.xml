@@ -1,12 +1,5 @@
 <resources>
-    <string-array name="pic_normal">
-        <item>selector</item>
-        <item>selector</item>
-        <item>selector</item>
-        <item>selector</item>
-    </string-array>
-    
-    <string-array name="pic_selected">
+    <string-array name="pic_selector">
         <item>selector</item>
         <item>selector</item>
         <item>selector</item>

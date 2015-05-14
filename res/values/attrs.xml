@@ -1,7 +1,9 @@
 <resources>
     <declare-styleable name="tab_view">
         <attr name="tab_count" format="integer"/>
-        <attr name="tab_pic_normal" format="reference"/>
-        <attr name="tab_pic_selected" format="reference"/>
+        <attr name="tab_height" format="dimension"/>
+        <attr name="item_width" format="dimension"/>
+        <attr name="item_height" format="dimension"/>
+        <attr name="tab_pic_selector" format="reference"/>
     </declare-styleable>
 </resources>

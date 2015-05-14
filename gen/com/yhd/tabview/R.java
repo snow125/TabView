@@ -9,10 +9,29 @@ package com.yhd.tabview;
 
 public final class R {
     public static final class array {
-        public static final int pic_normal=0x7f040000;
-        public static final int pic_selected=0x7f040001;
+        public static final int pic_selector=0x7f040000;
     }
     public static final class attr {
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int item_height=0x7f010003;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int item_width=0x7f010002;
         /** <p>Must be an integer value, such as "<code>100</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -21,14 +40,20 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int tab_count=0x7f010000;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int tab_height=0x7f010001;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int tab_pic_normal=0x7f010001;
-        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int tab_pic_selected=0x7f010002;
+        public static final int tab_pic_selector=0x7f010004;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -48,7 +73,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int selector=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f090000;
+        public static final int action_settings=0x7f090002;
+        public static final int tab=0x7f090001;
+        public static final int text=0x7f090000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -96,17 +123,54 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #tab_view_item_height com.yhd.tabview:item_height}</code></td><td></td></tr>
+           <tr><td><code>{@link #tab_view_item_width com.yhd.tabview:item_width}</code></td><td></td></tr>
            <tr><td><code>{@link #tab_view_tab_count com.yhd.tabview:tab_count}</code></td><td></td></tr>
-           <tr><td><code>{@link #tab_view_tab_pic_normal com.yhd.tabview:tab_pic_normal}</code></td><td></td></tr>
-           <tr><td><code>{@link #tab_view_tab_pic_selected com.yhd.tabview:tab_pic_selected}</code></td><td></td></tr>
+           <tr><td><code>{@link #tab_view_tab_height com.yhd.tabview:tab_height}</code></td><td></td></tr>
+           <tr><td><code>{@link #tab_view_tab_pic_selector com.yhd.tabview:tab_pic_selector}</code></td><td></td></tr>
            </table>
+           @see #tab_view_item_height
+           @see #tab_view_item_width
            @see #tab_view_tab_count
-           @see #tab_view_tab_pic_normal
-           @see #tab_view_tab_pic_selected
+           @see #tab_view_tab_height
+           @see #tab_view_tab_pic_selector
          */
         public static final int[] tab_view = {
-            0x7f010000, 0x7f010001, 0x7f010002
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004
         };
+        /**
+          <p>This symbol is the offset where the {@link com.yhd.tabview.R.attr#item_height}
+          attribute's value can be found in the {@link #tab_view} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.yhd.tabview:item_height
+        */
+        public static final int tab_view_item_height = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.yhd.tabview.R.attr#item_width}
+          attribute's value can be found in the {@link #tab_view} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.yhd.tabview:item_width
+        */
+        public static final int tab_view_item_width = 2;
         /**
           <p>This symbol is the offset where the {@link com.yhd.tabview.R.attr#tab_count}
           attribute's value can be found in the {@link #tab_view} array.
@@ -122,24 +186,30 @@ containing a value of this type.
         */
         public static final int tab_view_tab_count = 0;
         /**
-          <p>This symbol is the offset where the {@link com.yhd.tabview.R.attr#tab_pic_normal}
+          <p>This symbol is the offset where the {@link com.yhd.tabview.R.attr#tab_height}
           attribute's value can be found in the {@link #tab_view} array.
 
 
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.yhd.tabview:tab_pic_normal
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.yhd.tabview:tab_height
         */
-        public static final int tab_view_tab_pic_normal = 1;
+        public static final int tab_view_tab_height = 1;
         /**
-          <p>This symbol is the offset where the {@link com.yhd.tabview.R.attr#tab_pic_selected}
+          <p>This symbol is the offset where the {@link com.yhd.tabview.R.attr#tab_pic_selector}
           attribute's value can be found in the {@link #tab_view} array.
 
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name com.yhd.tabview:tab_pic_selected
+          @attr name com.yhd.tabview:tab_pic_selector
         */
-        public static final int tab_view_tab_pic_selected = 2;
+        public static final int tab_view_tab_pic_selector = 4;
     };
 }
